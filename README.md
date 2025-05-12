@@ -1,5 +1,13 @@
 # Case Study: Data Engineering
 
+---
+
+⚠️ PLEASE DO NOT FORK THIS REPO AS OTHERS MAY SEE YOUR CODE. INSTEAD YOU CAN SHOULD
+[USE THIS TEMPLATE](https://github.com/new?template_name=case-study-data-engineering&template_owner=MDPI-AG)
+TO CREATE YOUR OWN REPOSITORY.
+
+---
+
 ## Targeted Workflow
 
 Extract → Store raw → Preprocess → Load to PostgreSQL → Transform with dbt → Analyze
@@ -23,6 +31,12 @@ docker-compose up -d
 
 This will start a Postgres database on port 5432. You can access the database using
 any Postgres client.
+
+## Issues with CrossRef API
+
+If you face any issues with accessing the CrossRef API, you can add `&mailto=your@email`
+into the URL. This way CrossRef assigns your API request to a prioritized pool. Use
+a real email address.
 
 ## Suggested Project Structure
 

@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 
 config = Config(config={
-    "API_ENDPOINT": "https://api.crossref.org/works?sort=published&order=desc&rows=200&mailto=drordorf@gmail.com",
+    "API_ENDPOINT": "https://api.crossref.org/works?sort=published&order=desc&rows=200",
     "DB_HOST": "localhost",
     "DB_PORT": 5432,
     "DB_NAME": "my_database",
