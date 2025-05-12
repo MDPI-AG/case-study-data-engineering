@@ -35,15 +35,15 @@ any Postgres client.
 ├── src                         # All Python source code
 │   ├── extract                 # Code to call APIs and fetch raw data
 │   │   ├── __init__.py
-│   │   └── fetch_api_data.py
+│   │   └── extractor.py
 │   │
-│   ├── preprocess              # Optional step to normalize / clean raw data
+│   ├── preprocess              # Normalize / clean / deduplicate raw data
 │   │   ├── __init__.py
 │   │   └── normalize.py
 │   │
 │   ├── load                    # Load preprocessed data into Postgres
 │   │   ├── __init__.py
-│   │   └── load_to_postgres.py
+│   │   └── loader.py
 │   │
 │   ├── utils                   # Config, logging, etc.
 │   │   ├── __init__.py
@@ -59,7 +59,7 @@ any Postgres client.
 │   ├── seeds
 │   └── snapshots
 │
-├── docker-compose.yml
+├── docker-compose.yml          # Docker Compose file to run Postgres
 ├── main.py                     # Entrypoint that runs the pipeline
 ├── README.md
 └── requirements.txt
@@ -67,13 +67,14 @@ any Postgres client.
 
 ## Some Ideas for Todos
 
-- save the raw data from the API (loop a few pages)
-- a pipeline to load the raw data, preprocess it (e.g., deduplicate items), and dump it to a parquet file
-- a pipeline in dbt to query the parquet file
-- an orchestrator to run the pipelines
+- improve the fetching of raw data: loop a few pages of the API responses
+- improve the deduplicator logic: some items with different DOI's may belong together (e.g., a preprint and a journal article version of the same work)
+- start the dbt schema and sql models to run some analytics on the data, e.g., sum citations per year, or per journal, or per publisher
+- decompose the `main.py` entrypoints into distinct pipelines and use an orchestrator such as Airflow or Prefect
 - Dockerize the python app
 
 ## dbt
 
 If you are not familiar with dbt, you can check their [sandox project](https://github.com/dbt-labs/jaffle-shop/)
-on GitHub.
+on GitHub to get started. You can also check the [dbt documentation](https://docs.getdbt.com/docs/introduction)
+for more information.
