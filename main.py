@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from src.utils.config import Config
 from src.utils.logger import setup_logger
 
@@ -17,7 +19,25 @@ logger = setup_logger(
 
 # API client for CrossRef works api endpoint
 client = DataExtractor(config, logger)
-client.fetch_api_data()
+data = client.fetch_api_data()
+
+# dump raw json response data to a file
+now = datetime.now()
+filename = now.strftime("%Y%m%d_%H%M%S") + "_data.json"
+filepath = f"./data/raw/{filename}"
+with open(filepath, "w") as f:
+    import json
+    json.dump(data, f, indent=4)
+
+# head the data
+import pandas as pd
+try:
+    df = pd.DataFrame.from_dict(data["message"]["items"])
+    print(df.head())
+except KeyError as e:
+    logger.error(f"KeyError: {e}")
+    logger.error("Data format may have changed. Please check the API response.")
+
 
 # some ideas for todos:
 #  - save the raw data from the API (loop a few pages)

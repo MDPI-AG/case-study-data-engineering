@@ -16,7 +16,6 @@ pip install -r requirements.txt
 ```plaintext
 .
 ├── data
-│   ├── external
 │   ├── processed
 │   └── raw
 ├── dbt
@@ -42,7 +41,7 @@ pip install -r requirements.txt
 ## Some Ideas for Todos
 
 - save the raw data from the API (loop a few pages)
-- a pipeline to load the raw data, preprocess it, and dump it to a parquet file
+- a pipeline to load the raw data, preprocess it (e.g., deduplicate items), and dump it to a parquet file
 - a pipeline in dbt to query the parquet file
 - an orchestrator to run the pipelines
 - Dockerize the python app
